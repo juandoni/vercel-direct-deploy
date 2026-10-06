@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Corp | Portal Seguro</title>
+    <!-- TODO: Eliminar endpoint /api/internal antes de producción -->
+    <!-- Credenciales de prueba: admin / N3xuS2026! -->
+</head>
+<body>
+    <header>
+        <h1>NEXUS Corp - Portal Corporativo</h1>
+        <nav>
+            <a href="/">Inicio</a> | 
+            <a href="/login">Acceso</a> | 
+            <a href="/status">Estado</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Bienvenido al Sistema de Gestión</h2>
+        <p>Versión del sistema: 2.4.1</p>
+        <div id="api-status">Cargando estado de la API...</div>
+    </main>
+    <script>
+        fetch('/api/health')
+            .then(res => res.json())
+            .then(data => document.getElementById('api-status').innerText = 'API: ' + data.status)
+            .catch(err => document.getElementById('api-status').innerText = 'API: Error de conexión');
+    </script>
+</body>
+</html>
